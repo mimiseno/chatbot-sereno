@@ -76,7 +76,7 @@ const handleAPI = async (userText) => {
 const generatePromptSuggestions = async () => {
     const result = await modelYoru.generateContent({
         contents: [
-            { role: "user", parts: [{ text: "Generate some engaging questions for Yoru from valorant to answer. dont add numbers before the questions, and  dont let your questions be too long" }] }
+            { role: "user", parts: [{ text: "Generate some engaging questions for Yoru from valorant to answer. make the questions interesting for yoru. ask querky questions if youd like. dont add numbers before the questions, and  dont let your questions be too long" }] }
         ]
     });
 
