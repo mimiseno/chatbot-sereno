@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="chatbot.css">
+    <script type="importmap">
+        {
+            "imports": {
+                "@google/generative-ai": "https://esm.run/@google/generative-ai"
+            }
+        }
+    </script>
+    <title>YoruBot</title>
+</head>
+<body>
+    <div class="grid-container">
+        <div class="sidebar rounded-3xl">
+            <div class="sidebar-header h-20 flex items-center justify-center bg-[#f4ede69b] rounded-t-3xl mb-10">
+                <h1 class="text-2xl font-bold text-grey">Welcome to YoruBot</h1>
+            </div>
+            <p class="text-grey text-center text-m">This AI isn’t here to sugarcoat things or waste time. It responds quickly, speaks concisely, and doesn’t bother with unnecessary explanations. Inspired by Yoru from Valorant, it carries his cocky, sarcastic attitude, throwing in dry humor and sharp remarks along the way.
+
+                Expect fast-paced replies, playful roasts, and an occasional reality check. Whether you're asking about the game, random topics, or just looking for some banter, Yoru AI keeps things short and direct—no overtalking, no hand-holding.
+                
+                If you're ready, go ahead. Just don’t expect it to go easy on you.</p>
+           
+        </div>
+        
+        <div class="chatbot-maincontainer">
+<div class="chat-cont">
+                <div class="prompt-suggestions flex gap-3 w-max text-xs text-center"></div> 
+                <div class="flex items-center justify-center"></div>
+            </div>
+
+
+
+            <div class="typing-cont">
+                <div class="type-textarea">
+                    <div class="chat-div">
+                        <textarea class="chat-input" id="chat-input" spellcheck="false" placeholder="Ask ChatGPT" required></textarea>
+                    </div>
+                    <div class="button-div">
+                        <button class="send-btn" id="send-btn">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script type="module" src="mainmodule.js"></script>
+    <script type="module" src="script.js"></script>
+</body>
+</html>
