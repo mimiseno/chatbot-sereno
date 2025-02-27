@@ -73,31 +73,32 @@ const handleAPI = async (userText) => {
 };
 
 // Generate new prompt suggestions
-const promptOptions = [
-    "yo yoru what did you think of that last round",
-    "be honest was that a throw or a clutch",
-    "how do i play like you",
-    "why do you always act like you're the best",
-    "if you were on my team would you carry or flame me",
-    "tell me what i did wrong but don’t be nice about it",
-    "what’s your opinion on the other agents",
-    "if we 1v1’d who would win and why is it you",
-    "what’s the worst play you’ve ever seen",
-    "if you had to teach me one thing what would it be",
-    "what’s your go-to coffee order and don’t say black like your soul",
-    "describe my gameplay in three words",
-    "if you had to duo with me would you accept or dodge",
-    "what's the dumbest thing you've ever seen in a ranked match"
-];  
+const generatePromptSuggestions = async () => {
+    const result = await modelYoru.generateContent({
+        contents: [
+            { role: "user", parts: [{ text: "Generate some engaging questions for Yoru from valorant to answer. dont add numbers before the questions, and  dont let your questions be too long" }] }
+        ]
+    });
 
-const generateRandomPrompts = () => {
+    const response = await result.response.text();
+    const promptOptions = response.split('\n').filter(prompt => prompt.trim() !== '');
+
+    return promptOptions;
+};
+
+
+const generateRandomPrompts = async () => {
+    let promptOptions = await generatePromptSuggestions(); // Fetch prompt options dynamically
+
+
     if (!promptContainer) return;
     promptContainer.innerHTML = "";
     promptContainer.style.display = "none";
 
     let usedIndexes = new Set();
-    while (usedIndexes.size < 3) {
+    while (usedIndexes.size < 3 && promptOptions.length > 0) { 
         let randomIndex = Math.floor(Math.random() * promptOptions.length);
+
         if (!usedIndexes.has(randomIndex)) {
             usedIndexes.add(randomIndex);
             let promptText = promptOptions[randomIndex];
