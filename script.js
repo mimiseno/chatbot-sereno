@@ -73,31 +73,18 @@ const handleAPI = async (userText) => {
 };
 
 // Generate new prompt suggestions
-const promptOptions = [
-    "yo yoru what did you think of that last round",
-    "be honest was that a throw or a clutch",
-    "how do i play like you",
-    "why do you always act like you're the best",
-    "if you were on my team would you carry or flame me",
-    "tell me what i did wrong but don’t be nice about it",
-    "what’s your opinion on the other agents",
-    "if we 1v1’d who would win and why is it you",
-    "what’s the worst play you’ve ever seen",
-    "if you had to teach me one thing what would it be",
-    "what’s your go-to coffee order and don’t say black like your soul",
-    "describe my gameplay in three words",
-    "if you had to duo with me would you accept or dodge",
-    "what's the dumbest thing you've ever seen in a ranked match"
-];  
+const generateRandomPrompts = async (promptOptions) => {
 
-const generateRandomPrompts = () => {
+
     if (!promptContainer) return;
     promptContainer.innerHTML = "";
     promptContainer.style.display = "none";
 
+    const promptOptions = await generatePromptSuggestions(); // Fetch prompt options dynamically
     let usedIndexes = new Set();
-    while (usedIndexes.size < 3) {
+    while (usedIndexes.size < 3 && promptOptions.length > 0) {
         let randomIndex = Math.floor(Math.random() * promptOptions.length);
+
         if (!usedIndexes.has(randomIndex)) {
             usedIndexes.add(randomIndex);
             let promptText = promptOptions[randomIndex];
