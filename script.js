@@ -50,6 +50,8 @@ const handleAPI = async (userText) => {
 
     console.log("User Input:", userText);
     const response = await getChatResponse(userText); // Pass userText directly
+    promptContainer.style.display = "none"; // Hide prompt suggestions when sending a message
+
 
 
 
@@ -125,11 +127,15 @@ const generateRandomPrompts = async () => {
 // Attach event listeners only if elements exist
 if (sendButton && chatInput) {
     sendButton.addEventListener("click", () => {
+        promptContainer.style.display = "none"; // Hide prompt suggestions when sending a message
+
         handleAPI(chatInput.value);
     });
 
 
     chatInput.addEventListener("keypress", (event) => {
+        promptContainer.style.display = "none"; // Hide prompt suggestions when sending a message
+
         if (event.key === "Enter") {
             event.preventDefault(); // Prevent default form submission
             handleAPI(chatInput.value);
